@@ -1,0 +1,39 @@
+﻿@model NewsListViewModel
+
+<link rel="stylesheet"
+      asp-href-include="/lib/bootstrap/dist/**/*.min.css"
+      asp-href-exclude="**/*-reboot*,**/*-grid*" />
+<style>
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+</style>
+
+<div style="margin: auto;width: 980px;position: relative; text-align: left;">
+    <div style="left: 19px; width: 944px; position: absolute; top: 36px;">
+        <h2 class="font_2">
+            Новини
+        </h2>
+    </div>
+
+    <div class="hl2" style="left: 19px; width: 470px; position: absolute; top: 162px; height: 6px;">
+    </div>
+    <div style="left: 20px; width: 980px; position: absolute; top: 202px; margin-bottom: 70px">
+        @foreach (var n in Model.NewsRepo)
+        {
+            @await Html.PartialAsync("NewsSummary", n)
+        }
+
+        <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary"
+             page-class-selected="btn-primary" page-url-category="@Model.Search"
+             class="btn-group pull-right m-1">
+        </div>
+    </div>
+</div>
+
+<div class="hl1" style="position: absolute; top: 167px; height: 5px; left: 0px; min-width: 980px; width: 100%">
+</div>

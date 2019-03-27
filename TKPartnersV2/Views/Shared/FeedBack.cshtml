@@ -1,0 +1,13 @@
+﻿@model FeedBack
+
+<form asp-controller="Home" asp-action="SendMessage" method="post">
+    <div>
+        <div>
+            <input asp-for="Name" type="text" placeholder="Ім'я" required>
+            <input asp-for="Mail" type="email" placeholder="Email" required>
+            <input asp-for="Subject" type="text" placeholder="Тема" required>
+        </div>
+        <textarea asp-for="Message" placeholder="Повідомлення" required></textarea>
+        <button type="submit">Надіслати</button>
+    </div>
+</form>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<News>
+
+<div style="position:absolute; width: 470px;background-color: rgba(175, 203, 224, 0.14); height: 285px; top:50px;">
+    @foreach (News n in Model)
+    {
+        <div style="width:465px;margin-left:5px; padding: 2em 0; height: 40px">
+            <div>
+                <p class="font_7">
+                    <a style="color: #6EA4CA;" asp-controller="Home" asp-action="News" asp-route-newsID="@n.NewsID">
+                        @n.Name
+                    </a>
+                </p>
+                <p class="font_10">@n.Date @n.Author</p>
+            </div>
+        </div>
+    }
+</div>

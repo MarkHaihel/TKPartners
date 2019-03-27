@@ -1,0 +1,86 @@
+﻿@model Tuple<IQueryable<News>, FeedBack>
+
+<div style="width: 100%; position: absolute; height: 500px">
+    <div class="cyrcle-slider">
+        <!--...-->
+    </div>
+</div>
+
+<div class="slider">
+    <div class="slider-info">
+        <div style="left: 35px; width: 869px; position: absolute; top: 37px;">
+            <h4 class="font_4">
+                Адвокатські послуги
+            </h4>
+
+            <div style="height:17px;">
+            </div>
+
+            <h5 class="font_5">
+                Тільки Корисне Партнерство
+            </h5>
+
+            <h5 class="font_5">з 2010 року</h5>
+        </div>
+        <div class="slider-info-button" style="position: absolute; left: 389px; top: 208px;">
+            <a asp-action="Practices" asp-controller="Home" class="slider-info-link">
+                <span class="slider-info-text">ДЕТАЛЬНІШЕ</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div style="height: 1px;width: 100%; min-width: 980px;margin-top: 40px;margin-bottom: 10px;" class="hl1"></div>
+<div style="margin: auto; height:auto; width: 980px;">
+    <div style="margin-left: 20px;width: 715px; text-align: left; margin-bottom: 50px;">
+        <p class="font_8">
+            <span style="font-family: arial, 'ｍｓ ｐゴシック', 'ms pgothic', 돋움, dotum, helvetica, sans-serif;font-size: 15px;line-height: normal;">
+                Адвокати Адвокатського об'єднання T.K.Partners мають багаторічний досвід роботи в юридичних компаніях України, підприємствах приватного та державного секторів економіки, фінансових установах та органах державної влади
+            </span>
+        </p>
+    </div>
+    <div style="margin-left: 20px;width: 715px; text-align: left; margin-bottom: 50px;">
+        <p class="font_8">
+            <span style="font-family: arial, 'ｍｓ ｐゴシック', 'ms pgothic', 돋움, dotum, helvetica, sans-serif;font-size: 15px;line-height: normal;">
+                Наші адвокати завжди прагнуть досягати абсолютної якості в наданні послуг Клієнтам. Взявши за мету кінцевий результат, ми приділяємо основну увагу якості наданих послуг та відповідності їх інтересам Клієнта. Вартість наших послуг в кожному окремому випадку залежить від особливостей та складності справи, кількості працівників, що надають послугу та завжди відповідає якості наданих послуг
+            </span>
+        </p>
+    </div>
+</div>
+
+<div style="position:relative;height: 1px;width: 100%; min-width: 980px;margin-top: 40px;margin-bottom: 10px;" class="hl1">
+    <div style="width: 980px; margin: auto; position: relative;">
+        <div style="position: absolute;left: 519px; height: 6px;width:440px;background-color:rgba(27, 153, 232, 1);bottom:0px;">
+            <div class="slider-info-button" style="position: absolute; right:0px; bottom: 0px;">
+                <a asp-action="People" asp-controller="Home" class="slider-info-link">
+                    <span class="slider-info-text">ДЕТАЛЬНІШЕ</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="position: relative; width: 980px; margin: auto; height: 500px; text-align: left;">
+    <div style="left: 19px; width: 470px; position: absolute; top: 0px;">
+        <h2 class="font_4">
+            Новини
+        </h2>
+    </div>
+    <div style="width:470px; margin-left:20px; position:relative; height: 320px;">
+        @await Html.PartialAsync("NewsBlock", Model.Item1)
+        <div style="left: 364px; position: absolute; top: 300px; height: 16px; min-height: 16px; width: 88px">
+            <a asp-controller="Home" asp-action="List">
+                <span class="font_9" style="transition: color 0.4s ease 0s; color: #0C3C60; font-size: 13px;">
+                    ДЕТАЛЬНІШЕ
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="txtNew" style="left: 519px; width: 469px; position: absolute; top: 0px;">
+        <h4 class="font_4">Написати</h4>
+    </div>
+    <div class="cf1" style="left: 519px; width: 443px; position: absolute; top: 50px; height: 286px;">
+        @await Html.PartialAsync("FeedBack", Model.Item2)
+    </div>
+</div>

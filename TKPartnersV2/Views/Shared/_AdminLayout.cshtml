@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css" />
+    <title>@ViewBag.Title</title>
+    <style>
+        .input-validation-error {
+            border-color: red;
+            background-color: #fee;
+        }
+    </style>
+</head>
+<body class="m-1 p-1">
+        <div class="bg-info p-2 row">
+            <div class="col">
+                <h4>@ViewBag.Title</h4>
+            </div>
+            <div class="col-1">
+                <a class="btn btn-sm btn-light"
+                   asp-action="Index" asp-controller="Home">Назад</a>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="col-1">
+                    <a class="btn btn-sm btn-dark"
+                        asp-action="Logout" asp-controller="Account">Вийти</a>
+                 </div>
+            }
+        </div>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success mt-1">@TempData["message"]</div>
+        }
+        @RenderBody()
+</body>
+</html>
