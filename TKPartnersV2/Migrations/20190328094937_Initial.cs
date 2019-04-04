@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TKPartnersV2.Migrations
@@ -13,10 +14,11 @@ namespace TKPartnersV2.Migrations
                 {
                     NewsID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Date = table.Column<string>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Author = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: false)
+                    Description = table.Column<string>(nullable: false),
+                    Count = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {

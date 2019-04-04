@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TKPartnersV2.Migrations.AppIdentityDb
 {
-    public partial class Initial : Migration
+    public partial class AppIdentityInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

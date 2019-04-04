@@ -21,8 +21,7 @@ namespace TKPartnersV2.Controllers
          => View(new NewsListViewModel
          {
              NewsRepo = repository.NewsRepo
-                 .Where(n => search == null || n.Name.Contains(search) || n.Author.Contains(search) || n.Description.Contains(search))
-                 .OrderBy(n => n.NewsID)
+                 .OrderBy(n => n.Date)
                  .Skip((newsPage - 1) * PageSize)
                  .Take(PageSize),
              PagingInfo = new PagingInfo
@@ -38,24 +37,11 @@ namespace TKPartnersV2.Controllers
          });
 
         public ViewResult News(int newsID)
-            => View(repository.NewsRepo
-                .Where(n => n.NewsID == newsID)
-                .OrderBy(n => n.NewsID)
-                .First());
+            => View(repository.GetNews(newsID));
 
-        public ViewResult Index()
-        {
-            var news = repository.NewsRepo
-                .OrderBy(n => n.NewsID)
-                .Skip(Math.Max(0, repository.NewsRepo.Count() - 3));
-
-            FeedBack feedBack = new FeedBack();
-
-            var tuple = new Tuple<IQueryable<News>, FeedBack>(news, feedBack);
-
-            return View(tuple);
-        }
-
+        public ViewResult Index() 
+            => View(new Tuple<IQueryable<News>, FeedBack>(repository.LastNews(), new FeedBack()));
+       
         [HttpPost]
         public IActionResult SendMessage(FeedBack feedBack)
         {

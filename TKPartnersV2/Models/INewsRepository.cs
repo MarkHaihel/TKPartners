@@ -9,5 +9,8 @@ namespace TKPartnersV2.Models
         void SaveNews(News news);
 
         News DeleteNews(int newsID);
+
+        News GetNews(int newsID);
+        IQueryable<News> LastNews();
     }
 }

@@ -14,8 +14,6 @@ tbody, td, tfoot, th, thead, title, tr, tt, u, ul, var {
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
     font-size: 10px;
     text-align: center;
     font-family: Arial,Helvetica,sans-serif;
@@ -84,6 +82,12 @@ header {
 .font_10 {
     font: normal normal normal 10px/1.4em Arial,'ｍｓ ｐゴシック','ms pgothic','돋움',dotum,helvetica,sans-serif;
     color: #0C3C60;
+}
+
+.text_span {
+    font-family: arial, 'ｍｓ ｐゴシック', 'ms pgothic', 돋움, dotum, helvetica, sans-serif;
+    font-size: 15px;
+    line-height: normal;
 }
 
 .hl1 {

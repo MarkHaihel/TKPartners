@@ -17,7 +17,7 @@
         <tr>
             <td class="text-right">@item.NewsID</td>
             <td>@item.Name</td>
-            <td class="text-right">@item.Date</td>
+            <td class="text-right">@item.Date.ToString("MM/dd/yyyy")</td>
             <td class="text-right">@item.Author</td>
             <td class="text-center">
                 <form asp-action="Delete" method="post">

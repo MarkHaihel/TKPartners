@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace TKPartnersV2.Models
 {
@@ -45,6 +46,29 @@ namespace TKPartnersV2.Models
                 context.SaveChanges();
             }
             return dbEntry;
+        }
+
+        public IQueryable<News> LastNews()
+        {
+            return NewsRepo
+                .OrderByDescending(n => n.Date)
+                .Skip(Math.Max(0, NewsRepo.Count() - 3));
+        }
+
+        public News GetNews(int newsID)
+        {
+            News dbEntry = context.NewsRepo
+                    .FirstOrDefault(p => p.NewsID == newsID);
+            if (dbEntry != null)
+            {
+                dbEntry.Count++;
+            }
+            context.SaveChanges();
+
+            return NewsRepo
+                .Where(n => n.NewsID == newsID)
+                .OrderBy(n => n.NewsID)
+                .First();
         }
     }
 }

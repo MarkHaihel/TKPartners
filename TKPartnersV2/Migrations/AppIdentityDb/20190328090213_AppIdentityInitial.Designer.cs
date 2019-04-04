@@ -10,8 +10,8 @@ using TKPartnersV2.Models;
 namespace TKPartnersV2.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20190324184758_Initial")]
-    partial class Initial
+    [Migration("20190328090213_AppIdentityInitial")]
+    partial class AppIdentityInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
