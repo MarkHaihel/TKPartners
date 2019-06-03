@@ -37,7 +37,7 @@ namespace TKPartnersV2.Controllers
          });
 
         public ViewResult News(int newsID)
-            => View(repository.GetNews(newsID));
+            => View(new Tuple<News, IQueryable<News>>(repository.GetNews(newsID), repository.NewsRepo));
 
         public ViewResult Index() 
             => View(new Tuple<IQueryable<News>, FeedBack>(repository.LastNews(), new FeedBack()));

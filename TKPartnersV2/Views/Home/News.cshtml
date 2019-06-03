@@ -1,16 +1,110 @@
-﻿@model News
+﻿@model Tuple<News, IQueryable<News>>
 
 <link rel="stylesheet"
       asp-href-include="/lib/bootstrap/dist/**/*.min.css"
       asp-href-exclude="**/*-reboot*,**/*-grid*" />
+<style>
+    a {
+        text-decoration: none;
+    }
 
-<div>
-    <div class="bg-faded p-1">
-        <h3>@Model.Name</h3>
-        <h4>@Model.Date.ToString("MM/dd/yyyy") @Model.Author</h4>
+        a:hover {
+            text-decoration: none;
+        }
+</style>
+
+<div style="margin: auto;width: 980px;position: relative; text-align: left;">
+    <div style="left: 19px; width: 944px; position: absolute; top: 36px;">
+        <h2 class="font_2">
+            Новини
+        </h2>
     </div>
 
-    <div class="card-text p-1">
-        @Model.Description
+    <div class="hl2" style="left: 19px; width: 470px; position: absolute; top: 162px; height: 6px;">
     </div>
+    <div style="left: 20px; width: 980px; position: absolute; top: 202px; margin-bottom: 70px">
+        <div style="width:600px; position:relative; height: auto; background-color: rgba(175, 203, 224, 0.42); padding-top: 20px; padding-bottom: 20px;">
+            <div style="width:520px; margin-left:40px;">
+                <div>
+                    <p class="font_4">@Model.Item1.Name</p>
+                    <p class="font_9">@Model.Item1.Date.ToString("MM/dd/yyyy") @Model.Item1.Author</p>
+                </div>
+
+                <p class="font_8">
+                    @Model.Item1.Description
+                </p>
+            </div>
+        </div>
+    </div>
+    <div style="width: 33%; height: 780px; margin-bottom:70px; position: absolute; top: 202px; left: 635px; background-color: rgba(175, 203, 224, 0.14)">
+        <div style="left: 52px; width: 220px; position: absolute; top: 20px;">
+            <h6 class="font_6">
+                <span>Пошук</span>
+            </h6>
+        </div>
+        <div class="hl1" style="left: 52px; width: 220px; position: absolute; top: 54px; height: 5px;">
+        </div>
+        <div style="position:absolute; width: 220px; height: auto; left: 52px; top: 65px;">
+            <form asp-controller="Home" asp-action="List" method="get">
+                <input class="form-control" type="text"
+                       aria-label="Search" style="width: 220px;" name="search" />
+                <button type="submit" style="top:4px; left:185px; position:absolute;
+                       background: url(/images/search.png); height: 30px;
+                       width: 30px; background-size:cover" value="" />
+            </form>
+        </div>
+
+        <div style="left: 52px; width: 220px; position: absolute; top: 120px;">
+            <h6 class="font_6">
+                <span>Популярні</span>
+            </h6>
+        </div>
+        <div class="hl1" style="left: 52px; width: 220px; position: absolute; top: 154px; height: 5px;">
+        </div>
+        <div style="left: 52px; width: 220px; position: absolute; top: 165px; height: 338px;">
+            @foreach (News n in Model.Item2.AsQueryable()
+          .OrderByDescending(n => n.Count)
+          .Skip(Math.Max(0, Model.Item2.AsQueryable().Count() - 3)))
+            {
+                <div style="width:99%;margin-left:5px; padding: 0em 0; height: auto">
+                    <div>
+                        <p class="font_8">
+                            <a style="color: #6EA4CA;" asp-controller="Home" asp-action="News" asp-route-newsID="@n.NewsID">
+                                @n.Name
+                            </a>
+                        </p>
+                        <p class="font_10">@n.Date.ToString("MM/dd/yyyy") @n.Author</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div style="left: 52px; width: 220px; position: absolute; top: 389px;">
+            <h6 class="font_6">
+                <span>Останні</span>
+            </h6>
+        </div>
+        <div class="hl1" style="left: 52px; width: 220px; position: absolute; top: 425px; height: 5px;">
+        </div>
+        <div style="left: 52px; width: 220px; position: absolute; top: 436px; height: 338px;">
+            @foreach (News n in Model.Item2.AsQueryable()
+          .OrderBy(n => n.Date)
+          .Skip(Math.Max(0, Model.Item2.AsQueryable().Count() - 5)))
+            {
+                <div style="width:99%;margin-left:5px; padding: 0em 0; height: auto">
+                    <div>
+                        <p class="font_8">
+                            <a style="color: #6EA4CA;" asp-controller="Home" asp-action="News" asp-route-newsID="@n.NewsID">
+                                @n.Name
+                            </a>
+                        </p>
+                        <p class="font_10">@n.Date.ToString("MM/dd/yyyy") @n.Author</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="hl1" style="position: absolute; top: 167px; height: 5px; left: 0px; min-width: 980px; width: 100%">
 </div>
